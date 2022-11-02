@@ -16,15 +16,16 @@ function App(props) {
       <h1>Calories and Macros</h1>
       <div className='mode-select' onChange={handleModeChange}>
         <input type="radio" id="macro" name="mode-select" value="macro" />
-        <label for="macro">Macro-Mode</label>
+        <label htmlFor="macro">Macro-Mode</label>
         <input type="radio" id="percentage" name="mode-select" value="percentage" />
-        <label for="percentage">Percentage-Mode</label>
+        <label htmlFor="percentage">Percentage-Mode</label>
       </div>
       
       {mode==='macro' && <MacroMode />}
       {mode==='percentage' && <PercentageMode />}
-      
+      <div className='spacer'></div>
     </div>
+    
   );
 }
 
