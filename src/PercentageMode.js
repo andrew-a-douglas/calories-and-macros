@@ -9,9 +9,9 @@ function PercentageMode(props) {
     const [carbPercentage, setCarbPercentage] = useState(40);
     const [warning, setWarning] = useState({})
 
-    let proteinGrams = Math.round(totalCals * (proteinPercentage/100) / 4);
-    let carbGrams = Math.round(totalCals * (carbPercentage/100) / 4);
-    let fatGrams = Math.round(totalCals * (fatPercentage/100) / 9);
+    let proteinGrams = totalCals * (proteinPercentage/100) / 4;
+    let carbGrams = totalCals * (carbPercentage/100) / 4;
+    let fatGrams = totalCals * (fatPercentage/100) / 9;
     let mealsArray = [2,3,4,5,6,7,8]; //must be numbers.
 
     const handleChangeProteinPercentage = (event) => {
@@ -54,29 +54,28 @@ function PercentageMode(props) {
             <div className='protein'>
                 <label htmlFor='protein'>Protein Percentage</label>
                 <input id='protein' style={warning} type='number' value={proteinPercentage} onChange={handleChangeProteinPercentage} min="0" max="100" />
-                <p>Protein Grams: {proteinGrams}</p>
-                <p>Protein Calories: {proteinGrams * 4}</p>
+                <p>Protein Grams: {Math.round(proteinGrams)}</p>
+                <p>Protein Calories: {Math.round(proteinGrams * 4)}</p>
 
             </div>
             <div className='carb'>
-                <label htmlFor='carb'>Protein Percentage</label>
+                <label htmlFor='carb'>Carb Percentage</label>
                 <input id='carb' style={warning} type='number' value={carbPercentage} onChange={handleChangeCarbPercentage} min="0" max="100" />
-                <p>Carb Grams: {carbGrams}</p>
-                <p>Carb Calories: {carbGrams * 4}</p>
+                <p>Carb Grams: {Math.round(carbGrams)}</p>
+                <p>Carb Calories: {Math.round(carbGrams * 4)}</p>
 
             </div>
             <div className='fat'>
-                <label htmlFor='fat'>Protein Percentage</label>
+                <label htmlFor='fat'>Fat Percentage</label>
                 <input id='fat' style={warning} type='number' value={fatPercentage} onChange={handleChangeFatPercentage} min="0" max="100" />
-                <p>Fat Grams: {fatGrams}</p>
-                <p>Fat Calories: {fatGrams * 9}</p>
+                <p>Fat Grams: {Math.round(fatGrams)}</p>
+                <p>Fat Calories: {Math.round(fatGrams * 9)}</p>
 
             </div> 
         </div>
         <div className='totals'>
-            <label htmlFor='total-cals'>Total Cals</label>
+            <label htmlFor='total-cals'>Total Calories: </label>
             <input id='total-cals' type='number' value={totalCals} onChange={handleChangeTotalCals} min="0" />
-            <p>Total Calories are {totalCals}</p>
         </div>
         <div className='meals'>
             {mapArray(mealsArray, proteinGrams, carbGrams, fatGrams, totalCals)}

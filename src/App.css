@@ -34,7 +34,7 @@
   padding: 20px;
 }
 
-.totals p {
+.totals p, .totals label, .totals input {
   font-size: 1.5em;
   font-weight: bold;
 }
@@ -58,6 +58,7 @@ input {
   background-color: azure;
   padding: 20px;
   border-radius: 10px;
+  font-size: .75em;
 }
 
 .spacer {

@@ -14,6 +14,7 @@ function App(props) {
   return (
     <div className="App">
       <h1>Calories and Macros</h1>
+      <h2>A totally mediocre app by Andrew Douglas</h2>
       <div className='mode-select' onChange={handleModeChange}>
         <input type="radio" id="macro" name="mode-select" value="macro" />
         <label htmlFor="macro">Macro-Mode</label>
