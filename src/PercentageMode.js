@@ -31,7 +31,6 @@ function PercentageMode(props) {
     }
 
     useEffect(() => {
-        console.log('useEffect says hello');
         let percentageTotal = Number(fatPercentage)+Number(carbPercentage)+Number(proteinPercentage);
         if(percentageTotal === 100) {
             setWarning({});

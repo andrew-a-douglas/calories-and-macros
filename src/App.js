@@ -2,6 +2,7 @@ import './App.css';
 import MacroMode from './MacroMode';
 import React, { useState } from 'react';
 import PercentageMode from './PercentageMode';
+import EC from './EC';
 
 function App(props) {
 
@@ -20,10 +21,13 @@ function App(props) {
         <label htmlFor="macro">Macro-Mode</label>
         <input type="radio" id="percentage" name="mode-select" value="percentage" />
         <label htmlFor="percentage">Percentage-Mode</label>
+        <input type="radio" id="ec" name="mode-select" value="ec" />
+        <label htmlFor="ec">E.C.</label>
       </div>
       
       {mode==='macro' && <MacroMode />}
       {mode==='percentage' && <PercentageMode />}
+      {mode==='ec' && <EC />}
       <div className='spacer'></div>
     </div>
     

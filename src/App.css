@@ -79,3 +79,16 @@ input {
   padding: 10px;
   border-radius: 10px;
 }
+
+.EC {
+  background-color: lightblue;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 10px;
+  max-width: 800px;
+}
+
+.EC label {
+  font-size: .66em;
+  padding: 10px;
+}
