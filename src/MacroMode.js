@@ -41,18 +41,18 @@ function MacroMode(props) {
         <div className='carb'>
           <label htmlFor='carb'>Carb Grams</label>
           <input id='carb' placeholder='Carb Grams' type='number' value={carbGrams} onChange={handleChangeCarbGrams} />
-          <p>Carb Calories are {carbCals}</p>
+          <p>Carb Calories: {carbCals}</p>
           <p>({Math.round(carbCals / totalCals * 100)}%)</p>
         </div>
         <div className='fat'>
           <label htmlFor='fat'>Fat Grams</label>
           <input id='fat' placeholder='Fat Grams' type='number' value={fatGrams} onChange={handleChangeFatGrams} />
-          <p>Fat Calories are {fatCals}</p>
+          <p>Fat Calories: {fatCals}</p>
           <p>({Math.round(fatCals / totalCals * 100)}%)</p>
         </div> 
       </div>
       <div className='totals'>
-        <p>Total Calories are {totalCals}</p>
+        <p>Total Calories: {totalCals}</p>
       </div>
       <div className='meals'>
         {mapArray(mealsArray, proteinGrams, carbGrams, fatGrams, totalCals)}

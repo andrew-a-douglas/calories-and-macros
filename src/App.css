@@ -41,16 +41,25 @@
 
 input {
   text-align: center;
+  border-radius: 10px;
+  font-size: 1.2em;
 }
 
 .protein, .carb, .fat {
   display: flex;
   flex-direction: column;
   align-content: flex-start;
+  min-width: 300px;
+  max-width: 400px;
 }
 
 .protein p, .carb p, .fat p {
-  line-height: 0%;
+  padding: 0;
+  margin: 0;
+}
+
+.protein label, .carb label, .fat label {
+  font-weight: bold;
 }
 
 .meals {
