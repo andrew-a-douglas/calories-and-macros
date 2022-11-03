@@ -1,25 +1,9 @@
 import './App.css';
 
-import { useState, useEffect } from 'react';
+//import { useState, useEffect } from 'react';
 
 function EC(props) {
-    const [bodyWeight, setBodyWeight] = useState(200);
-    const [activity, setActivity] = useState(700);
-    const [step, setStep] = useState(1);
 
-    const handleChangeBodyWeight = (event) => {
-        setBodyWeight(event.target.value);
-    }
-    const handleChangeActivity = (event) => {
-        setActivity(event.target.value);
-    }
-
-    const handleNextClick = () => {
-        setStep(prev => prev + 1);
-    }
-    const handlePrevClick = () => {
-        setStep(prev => prev - 1);
-    }
 
     const displayJsx = (stepNum) => {
         if(stepNum === 1) {
@@ -28,8 +12,8 @@ function EC(props) {
                     <h2>Step 1: Enter Your Body Weight</h2>
                     <p>Enter your current body-weight, unless you are 20 pounds or more away from your target weight. In that case, use your target weight as the protein amount will likely feel insurmountable. </p>
                     <label htmlFor='bodyWeight'>Body Weight</label>
-                    <input id='bodyWeight' type='number' value={bodyWeight} onChange={handleChangeBodyWeight} min="0" max="1000" />
-                    <button onClick={handleNextClick}>Next</button>
+                    <input id='bodyWeight' type='number' value={props.bodyWeight} onChange={props.handleChangeBodyWeight} min="0" max="1000" />
+                    <button onClick={props.handleNextClick}>Next</button>
                 </div>
             );
         }
@@ -41,12 +25,12 @@ function EC(props) {
                     
                     <div className="activity-slider">
                         <label htmlFor='activity'>Small, little muscle, sedentary</label>
-                        <input id='activity' type='range' value={activity} onChange={handleChangeActivity} min="700" max="1000" />
+                        <input id='activity' type='range' value={props.activity} onChange={props.handleChangeActivity} min="700" max="1000" />
                         <label htmlFor='activity'>Large, muscled, very active</label>
                     </div>
                     
-                    <button onClick={handlePrevClick}>Prev</button>
-                    <button onClick={handleNextClick}>Next</button>
+                    <button onClick={props.handlePrevClick}>Prev</button>
+                    <button onClick={props.handleNextClick}>Next</button>
                 </div>
             );
         }
@@ -54,10 +38,10 @@ function EC(props) {
             return(
                 <div className='ec-step-3'>
                     <h2>Step 3: Eat This Amount of Protein...</h2>
-                    <p>{Math.round(bodyWeight * (activity/1000))} Grams</p>
+                    <p>{Math.round(props.bodyWeight * (props.activity/1000))} Grams</p>
                     <p>Input this into Macro-Mode and/or Percentage-Mode to determine your daily macros and caloric goals</p>
                     
-                    <button onClick={handlePrevClick}>Prev</button>
+                    <button onClick={props.handlePrevClick}>Prev</button>
                 </div>
             );
         }
@@ -67,7 +51,7 @@ function EC(props) {
     return (
         <div className="EC">
 
-            {displayJsx(step)}
+            {displayJsx(props.step)}
         
         </div>
     );
