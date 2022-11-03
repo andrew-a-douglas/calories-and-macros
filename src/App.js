@@ -10,6 +10,13 @@ function App(props) {
   const [bodyWeight, setBodyWeight] = useState(200);
   const [activity, setActivity] = useState(700);
   const [step, setStep] = useState(1);
+  const [totalCals, setTotalCals] = useState(2000);
+  const [fatPercentage, setFatPercentage] = useState(30);
+  const [proteinPercentage, setProteinPercentage] = useState(30);
+  const [carbPercentage, setCarbPercentage] = useState(40);
+  const [proteinGrams, setProteinGrams] = useState(150);
+  const [carbGrams, setCarbGrams] = useState(200);
+  const [fatGrams, setFatGrams] = useState(66);
 
   const handleModeChange = (event) => {
     setMode(event.target.value);
@@ -21,7 +28,6 @@ function App(props) {
   const handleChangeActivity = (event) => {
       setActivity(event.target.value);
   }
-
   const handleNextClick = () => {
       setStep(prev => prev + 1);
   }
@@ -42,8 +48,8 @@ function App(props) {
         <label htmlFor="ec">E.C.</label>
       </div>
       
-      {mode==='macro' && <MacroMode />}
-      {mode==='percentage' && <PercentageMode />}
+      {mode==='macro' && <MacroMode totalCals={totalCals} setTotalCals={setTotalCals} carbGrams={carbGrams} proteinGrams={proteinGrams} fatGrams={fatGrams} carbPercentage={carbPercentage} fatPercentage={fatPercentage} proteinPercentage={proteinPercentage} setCarbGrams={setCarbGrams} setProteinGrams={setProteinGrams} setFatGrams={setFatGrams} setCarbPercentage={setCarbPercentage} setFatPercentage={setFatPercentage} setProteinPercentage={setProteinPercentage} />}
+      {mode==='percentage' && <PercentageMode totalCals={totalCals} setTotalCals={setTotalCals} carbGrams={carbGrams} proteinGrams={proteinGrams} fatGrams={fatGrams} carbPercentage={carbPercentage} fatPercentage={fatPercentage} proteinPercentage={proteinPercentage} setCarbGrams={setCarbGrams} setProteinGrams={setProteinGrams} setFatGrams={setFatGrams} setCarbPercentage={setCarbPercentage} setFatPercentage={setFatPercentage} setProteinPercentage={setProteinPercentage} />}
       {mode==='ec' && <EC bodyWeight={bodyWeight} activity={activity} step={step} handleChangeBodyWeight={handleChangeBodyWeight} handleNextClick={handleNextClick} handleChangeActivity={handleChangeActivity} handlePrevClick={handlePrevClick}  />}
       <div className='spacer'></div>
     </div>

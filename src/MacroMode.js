@@ -1,15 +1,8 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect } from 'react';
 
 function MacroMode(props) {
-  const [proteinGrams, setProteinGrams] = useState(160);
-  const [carbGrams, setCarbGrams] = useState(210);
-  const [fatGrams, setFatGrams] = useState(71);
 
-  let proteinCals = proteinGrams * 4;
-  let carbCals = carbGrams * 4;
-  let fatCals = fatGrams * 9;
-  let totalCals = proteinCals + carbCals + fatCals;
   let mealsArray = [2,3,4,5,6,7,8]; //must be numbers.
 
   const mapArray = (arr, proteinGrams, carbGrams, fatGrams, totalCals) => {
@@ -17,16 +10,23 @@ function MacroMode(props) {
   }
 
   const handleChangeProteinGrams = (event) => {
-    setProteinGrams(() => event.target.value);
+    props.setProteinGrams(() => event.target.value);
   }
 
   const handleChangeCarbGrams = (event) => {
-    setCarbGrams(() => event.target.value);
+    props.setCarbGrams(() => event.target.value);
+  }
+  const handleChangeFatGrams = (event) => {
+    props.setFatGrams(() => event.target.value);
   }
 
-  const handleChangeFatGrams = (event) => {
-    setFatGrams(() => event.target.value);
-  }
+  useEffect(() => {
+    props.setFatPercentage((props.fatGrams * 9) / props.totalCals * 100);
+    props.setTotalCals((props.fatGrams * 9) + (props.carbGrams * 4) + (props.proteinGrams * 4));
+    props.setCarbPercentage((props.carbGrams * 4) / props.totalCals * 100);
+    props.setProteinPercentage((props.proteinGrams * 4) / props.totalCals * 100);
+
+  }, [props]);
 
 
   return (
@@ -34,30 +34,29 @@ function MacroMode(props) {
       <div className='macros'>
         <div className='protein'>
           <label htmlFor='protein'>Protein Grams</label>
-          <input id='protein' placeholder='Protein Grams' type='number' value={proteinGrams} onChange={handleChangeProteinGrams} />
-          <p>Protein Calories are {proteinCals}</p>
-          <p>({Math.round(proteinCals / totalCals * 100)}%)</p>
+          <input id='protein' placeholder='Protein Grams' type='number' value={props.proteinGrams} onChange={handleChangeProteinGrams} />
+          <p>Protein Calories are {props.proteinGrams * 4}</p>
+          <p>({Math.round(props.proteinPercentage)}%)</p>
         </div>
         <div className='carb'>
           <label htmlFor='carb'>Carb Grams</label>
-          <input id='carb' placeholder='Carb Grams' type='number' value={carbGrams} onChange={handleChangeCarbGrams} />
-          <p>Carb Calories: {carbCals}</p>
-          <p>({Math.round(carbCals / totalCals * 100)}%)</p>
+          <input id='carb' placeholder='Carb Grams' type='number' value={props.carbGrams} onChange={handleChangeCarbGrams} />
+          <p>Carb Calories: {props.carbGrams * 4}</p>
+          <p>({Math.round(props.carbPercentage)}%)</p>
         </div>
         <div className='fat'>
           <label htmlFor='fat'>Fat Grams</label>
-          <input id='fat' placeholder='Fat Grams' type='number' value={fatGrams} onChange={handleChangeFatGrams} />
-          <p>Fat Calories: {fatCals}</p>
-          <p>({Math.round(fatCals / totalCals * 100)}%)</p>
+          <input id='fat' placeholder='Fat Grams' type='number' value={props.fatGrams} onChange={handleChangeFatGrams} />
+          <p>Fat Calories: {props.fatGrams * 9}</p>
+          <p>({Math.round(props.fatPercentage)}%)</p>
         </div> 
       </div>
       <div className='totals'>
-        <p>Total Calories: {totalCals}</p>
+        <p>Total Calories: {props.totalCals}</p>
       </div>
       <div className='meals'>
-        {mapArray(mealsArray, proteinGrams, carbGrams, fatGrams, totalCals)}
+        {mapArray(mealsArray, props.proteinGrams, props.carbGrams, props.fatGrams, props.totalCals)}
       </div>
-      
     </div>
   );
 }
