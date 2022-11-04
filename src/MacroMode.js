@@ -34,25 +34,25 @@ function MacroMode(props) {
       <div className='macros'>
         <div className='protein'>
           <label htmlFor='protein'>Protein Grams</label>
-          <input id='protein' placeholder='Protein Grams' type='number' value={props.proteinGrams} onChange={handleChangeProteinGrams} />
-          <p>Protein Calories are {props.proteinGrams * 4}</p>
+          <input id='protein' placeholder='Protein Grams' type='number' value={Math.round(props.proteinGrams)} onChange={handleChangeProteinGrams} />
+          <p>Protein Calories are {Math.round(props.proteinGrams * 4)}</p>
           <p>({Math.round(props.proteinPercentage)}%)</p>
         </div>
         <div className='carb'>
           <label htmlFor='carb'>Carb Grams</label>
-          <input id='carb' placeholder='Carb Grams' type='number' value={props.carbGrams} onChange={handleChangeCarbGrams} />
-          <p>Carb Calories: {props.carbGrams * 4}</p>
+          <input id='carb' placeholder='Carb Grams' type='number' value={Math.round(props.carbGrams)} onChange={handleChangeCarbGrams} />
+          <p>Carb Calories: {Math.round(props.carbGrams * 4)}</p>
           <p>({Math.round(props.carbPercentage)}%)</p>
         </div>
         <div className='fat'>
           <label htmlFor='fat'>Fat Grams</label>
-          <input id='fat' placeholder='Fat Grams' type='number' value={props.fatGrams} onChange={handleChangeFatGrams} />
-          <p>Fat Calories: {props.fatGrams * 9}</p>
+          <input id='fat' placeholder='Fat Grams' type='number' value={Math.round(props.fatGrams)} onChange={handleChangeFatGrams} />
+          <p>Fat Calories: {Math.round(props.fatGrams * 9)}</p>
           <p>({Math.round(props.fatPercentage)}%)</p>
         </div> 
       </div>
       <div className='totals'>
-        <p>Total Calories: {props.totalCals}</p>
+        <p>Total Calories: {Math.round(props.totalCals)}</p>
       </div>
       <div className='meals'>
         {mapArray(mealsArray, props.proteinGrams, props.carbGrams, props.fatGrams, props.totalCals)}

@@ -12,6 +12,9 @@ function PercentageMode(props) {
         } else {
             setWarning({ backgroundColor: 'pink'});
         }
+        return (() => {
+            setWarning({});
+        });
 
     }, [props.fatPercentage,props.carbPercentage,props.proteinPercentage]);
 
@@ -37,9 +40,9 @@ function PercentageMode(props) {
     
       }, [props]);
 
-    useEffect(() => {
+    /*useEffect(() => {
         props.setTotalCals((props.fatGrams * 9) + (props.carbGrams * 4) + (props.proteinGrams * 4));
-    }, [props.fatPercentage,props.carbPercentage,props.proteinPercentage]);
+    }, [props.fatPercentage,props.carbPercentage,props.proteinPercentage]);*/
 
         
 
@@ -54,21 +57,21 @@ function PercentageMode(props) {
         <div className='macros'>
             <div className='protein'>
                 <label htmlFor='protein'>Protein Percentage</label>
-                <input id='protein' style={warning} type='number' value={props.proteinPercentage} onChange={handleChangeProteinPercentage} min="0" max="100" />
+                <input id='protein' style={warning} type='number' value={Math.round(props.proteinPercentage)} onChange={handleChangeProteinPercentage} min="0" max="100" />
                 <p>Protein Grams: {Math.round(props.proteinGrams)}</p>
                 <p>Protein Calories: {Math.round(props.proteinGrams * 4)}</p>
 
             </div>
             <div className='carb'>
                 <label htmlFor='carb'>Carb Percentage</label>
-                <input id='carb' style={warning} type='number' value={props.carbPercentage} onChange={handleChangeCarbPercentage} min="0" max="100" />
+                <input id='carb' style={warning} type='number' value={Math.round(props.carbPercentage)} onChange={handleChangeCarbPercentage} min="0" max="100" />
                 <p>Carb Grams: {Math.round(props.carbGrams)}</p>
                 <p>Carb Calories: {Math.round(props.carbGrams * 4)}</p>
 
             </div>
             <div className='fat'>
                 <label htmlFor='fat'>Fat Percentage</label>
-                <input id='fat' style={warning} type='number' value={props.fatPercentage} onChange={handleChangeFatPercentage} min="0" max="100" />
+                <input id='fat' style={warning} type='number' value={Math.round(props.fatPercentage)} onChange={handleChangeFatPercentage} min="0" max="100" />
                 <p>Fat Grams: {Math.round(props.fatGrams)}</p>
                 <p>Fat Calories: {Math.round(props.fatGrams * 9)}</p>
 
@@ -76,7 +79,7 @@ function PercentageMode(props) {
         </div>
         <div className='totals'>
             <label htmlFor='total-cals'>Total Calories: </label>
-            <input id='total-cals' type='number' value={props.totalCals} onChange={handleChangeTotalCals} min="0" />
+            <input id='total-cals' type='number' value={Math.round(props.totalCals)} onChange={handleChangeTotalCals} min="0" />
         </div>
         <div className='meals'>
             {mapArray(mealsArray, props.proteinGrams, props.carbGrams, props.fatGrams, props.totalCals)}

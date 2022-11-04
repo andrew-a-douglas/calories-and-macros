@@ -38,9 +38,8 @@ function EC(props) {
             return(
                 <div className='ec-step-3'>
                     <h2>Step 3: Eat This Amount of Protein...</h2>
-                    <p>{Math.round(props.bodyWeight * (props.activity/1000))} Grams</p>
-                    <p>Input this into Macro-Mode and/or Percentage-Mode to determine your daily macros and caloric goals</p>
-                    
+                    <p>{Math.round(props.proteinGrams)} Grams</p>
+                    <p>Input this into Macro-Mode to determine your remaining daily macros and/or your caloric goals</p>
                     <button onClick={props.handlePrevClick}>Prev</button>
                 </div>
             );
